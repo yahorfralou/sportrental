@@ -20,9 +20,7 @@ public class CSVReader implements IFileReader {
 
         try (FileReader fileReader = new FileReader(file)) {
 
-            String line = "";
 
-            listener.onNextObject(resolver.convertLine(line));
         }
     }
 
