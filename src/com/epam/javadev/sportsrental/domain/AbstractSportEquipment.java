@@ -1,6 +1,7 @@
 package com.epam.javadev.sportsrental.domain;
 
 import com.epam.javadev.sportsrental.domain.category.Category;
+import com.sun.istack.internal.Nullable;
 
 import java.util.Objects;
 
@@ -70,5 +71,35 @@ public abstract class AbstractSportEquipment {
         return "title='" + title + '\'' +
                 ", price=" + price +
                 ", category=" + category;
+    }
+
+    public static abstract class Builder<T extends AbstractSportEquipment> {
+        private static final int REQUIRED_FIELDS_NUMBER = 3;
+        public abstract T build();
+
+        @Nullable
+        abstract protected T getEntity();
+
+        abstract public Builder<T> newObject();
+
+        /**
+         *
+         * @param values expected: name, category, price
+         * @return
+         * @throws Exception
+         */
+        public Builder<T> populate(String... values) throws Exception {
+            if (values.length < REQUIRED_FIELDS_NUMBER) {
+                throw new Exception("Not enough parameters");
+            }
+
+            T sportEquipment = getEntity();
+
+            if (sportEquipment != null) {
+                // TODO assign values
+            }
+
+            return Builder.this;
+        }
     }
 }

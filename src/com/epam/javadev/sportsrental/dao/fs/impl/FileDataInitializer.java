@@ -14,7 +14,7 @@ public class FileDataInitializer implements IDataInitializer,
     @Override
     public void initData() {
         IFileReader fileReader;
-        fileReader.read(SPORT_DATA_FILE_NAME);
+        //fileReader.read(SPORT_DATA_FILE_NAME);
     }
 
 
