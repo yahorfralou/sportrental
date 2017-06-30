@@ -4,6 +4,7 @@ import com.epam.javadev.sportsrental.dao.fs.reader.IFileReader;
 import com.epam.javadev.sportsrental.dao.fs.reader.exception.EntityResolveException;
 import com.epam.javadev.sportsrental.domain.AbstractSportEquipment;
 import com.epam.javadev.sportsrental.domain.factory.SportEquipmentFactory;
+import com.sun.istack.internal.NotNull;
 import com.sun.istack.internal.Nullable;
 
 import java.util.Arrays;
@@ -17,7 +18,9 @@ public class CSVSportEquipmentResolver implements IFileReader.EntityResolver<Abs
 
     @Override
     public AbstractSportEquipment convertLine(String valuesRow) throws EntityResolveException {
-        if (valuesRow == null) return null;
+        if (valuesRow == null) {
+            throw new EntityResolveException("Values for parsing are null");
+        }
 
         String[] values = getValuesFromLine(valuesRow);
 
@@ -67,13 +70,10 @@ public class CSVSportEquipmentResolver implements IFileReader.EntityResolver<Abs
         return typeName;
     }
 
-    private String[] getValuesFromLine(String valuesRow) {
+    private String[] getValuesFromLine(@NotNull String valuesRow) {
         String[] values;
-        if (valuesRow != null) {
-            values = valuesRow.split(CSV_DELIMITER);
-        } else {
-            values = new String[]{};
-        }
+
+        values = valuesRow.split(CSV_DELIMITER);
 
         return values;
     }

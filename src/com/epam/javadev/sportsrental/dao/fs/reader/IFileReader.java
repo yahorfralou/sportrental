@@ -10,9 +10,9 @@ import java.io.IOException;
 public interface IFileReader<T> {
     void read(String filePath) throws IOException, EntityResolveException;
 
-    void setListener(ReadListener listener);
+    void setListener(ReadListener<T> listener);
 
-    void setEntityResolver(EntityResolver resolver);
+    void setEntityResolver(EntityResolver<T> resolver);
 
     interface ReadListener<T> {
         void onNextObject(T obj);
